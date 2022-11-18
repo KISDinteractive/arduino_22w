@@ -23,7 +23,7 @@ After a short intro into Arduino, Physical Computing, Cybernetics, and System Th
 
 **Basic Syntax**
 
-```arduino
+```c++
 // everything after a double slash is a comment, thus not interpreted as code
 
 void setup() { … } // is executed once, when the Arduino gets power 
@@ -47,7 +47,7 @@ void loop() { … } // is executed after setup() forever
 
 _In order to make the Arduino say "Hello World", we establish serial communication between the Arduino and the computer through the USB cable. This will be very useful later if we want to monitor e.g. values from sensors or we want to debug our code. To initialize the serial channel, we use the command `Serial.begin(9600);` inside the setup(). After we have done that, we can send data and/or text with the `Serial.println(); `command. Text is sent with quotation marks `"..."` , while values and variables are sent without._
 
-```arduino
+```c++
 void setup() {
   Serial.begin(9600); //initalizing Serial Communication
 }
@@ -65,7 +65,7 @@ _Since pin 0 - 13 are GPIO (=General Purpose Input/Output) -pins, we need to tel
 
 _Inside the loop() we use the command `digitalWrite()` (again 2 parameters, the first one refers to the pin, and the second one if it should to turned on=HIGH or off=LOW). Since we wouldn't be able to see the blinking if the LED would blink at full speed, we need to throw in a `delay()` after each change of the LED's state. The `delay()` command expects just one parameter, which is the time it should block the further execution of the code. Since the time is defined in milliseconds, we need the value 1000 to wait for a second._
 
-```arduino
+```c++
 void setup() {
   pinMode(13, OUTPUT);  // there is an output connected to pin 13
 }
@@ -82,7 +82,7 @@ void loop() {
 
 _We know variables already from the [fundamentals course](https://github.com/KISDinteractive/fundamentals22w). Now we use 2 of them here to abstract the concrete number we use for specifying the `delay()` function, and the pin number we are referring to inside the `pinMode()`and the `digitalWrite()` functions. Thus, if we would change the LED pin or wanted our blinking to happen with a different speed, we need only to adjust the two values at the top and don't need to deep dive into the setup() and loop()._
 
-```arduino
+```c++
 int delayValue = 1000; // create a global variable of type int, with the name "delayValue", holding the value 1000 
 int ledPin = 13; // create a global variable of type int, with the name "ledPin", holding the value 13 
 
@@ -104,7 +104,7 @@ _Exercise: Use your skills to program a LED-driven, visual SOS (3x short, 3x lon
 
 _Possible Solution:_
 
-```arduino
+```c++
 int shortValue = 100;
 int longValue = 500;
 int ledPin = 13;
