@@ -72,7 +72,7 @@ void setup() {
 
 void loop() {
   digitalWrite(13, HIGH); // turn led on
-  delay(1000);  // wait for 1 second (=1000 ms)
+  delay(1000);  // blocks futher execution for 1 second (=1000 ms)
   digitalWrite(13, LOW); // turn led of
   delay(1000); // wait again for 1 s
 }
@@ -83,16 +83,16 @@ void loop() {
 _We know variables already from the [fundamentals course](https://github.com/KISDinteractive/fundamentals22w). Now we use 2 of them here to abstract the concrete number we use for specifying the `delay()` function, and the pin number we are referring to inside the `pinMode()`and the `digitalWrite()` functions. Thus, if we would change the LED pin or wanted our blinking to happen with a different speed, we need only to adjust the two values at the top and don't need to deep dive into the setup() and loop()._
 
 ```arduino
-int delayValue = 1000;
-int ledPin = 13;
+int delayValue = 1000; // create a global variable of type int, with the name "delayValue", holding the value 1000 
+int ledPin = 13; // create a global variable of type int, with the name "ledPin", holding the value 13 
 
 void setup() {
-  pinMode(ledPin, OUTPUT);
+  pinMode(ledPin, OUTPUT); //using the variable "ledPin" as first parameter of the pinMode() function
 }
 
 void loop() {
-  digitalWrite(ledPin, HIGH);
-  delay(delayValue);
+  digitalWrite(ledPin, HIGH); // using "ledPin" as input for digitalWrite()
+  delay(delayValue); // using "delayValue" as input for delay()
   digitalWrite(ledPin, LOW);
   delay(delayValue);
 }
