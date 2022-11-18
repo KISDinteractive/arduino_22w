@@ -1,51 +1,52 @@
 int shortValue = 100;
 int longValue = 500;
+int ledPin = 13;
 
 void setup() {
-  pinMode(13, OUTPUT);
+  pinMode(ledPin, OUTPUT);
 }
 
 void loop() {
-  //s
-  digitalWrite(13, HIGH);
+  //s -----
+  digitalWrite(ledPin, HIGH);
   delay(shortValue);
-  digitalWrite(13, LOW);
+  digitalWrite(ledPin, LOW);
   delay(shortValue);
-  digitalWrite(13, HIGH);
+  digitalWrite(ledPin, HIGH);
   delay(shortValue);
-  digitalWrite(13, LOW);
+  digitalWrite(ledPin, LOW);
   delay(shortValue);
-  digitalWrite(13, HIGH);
+  digitalWrite(ledPin, HIGH);
   delay(shortValue);
-  digitalWrite(13, LOW);
+  digitalWrite(ledPin, LOW);
   delay(shortValue);
 
-  //0
-  digitalWrite(13, HIGH);
+  //0 -----
+  digitalWrite(ledPin, HIGH);
   delay(longValue);
-  digitalWrite(13, LOW);
+  digitalWrite(ledPin, LOW);
   delay(longValue);
-  digitalWrite(13, HIGH);
+  digitalWrite(ledPin, HIGH);
   delay(longValue);
-  digitalWrite(13, LOW);
+  digitalWrite(ledPin, LOW);
   delay(longValue);
-  digitalWrite(13, HIGH);
+  digitalWrite(ledPin, HIGH);
   delay(longValue);
-  digitalWrite(13, LOW);
+  digitalWrite(ledPin, LOW);
   delay(longValue);
 
-  //s
-  digitalWrite(13, HIGH);
+  //s -----
+  digitalWrite(ledPin, HIGH);
   delay(shortValue);
-  digitalWrite(13, LOW);
+  digitalWrite(ledPin, LOW);
   delay(shortValue);
-  digitalWrite(13, HIGH);
+  digitalWrite(ledPin, HIGH);
   delay(shortValue);
-  digitalWrite(13, LOW);
+  digitalWrite(ledPin, LOW);
   delay(shortValue);
-  digitalWrite(13, HIGH);
+  digitalWrite(ledPin, HIGH);
   delay(shortValue);
-  digitalWrite(13, LOW);
+  digitalWrite(ledPin, LOW);
   delay(shortValue);
 
   delay(1000);

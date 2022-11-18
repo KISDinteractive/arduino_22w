@@ -7,7 +7,7 @@
 
 ## Coding Summary of Session 1
 
-**All Arduino Files can be found inside the _src_ folder!**
+**All Arduino Files can be found inside the [src](https://github.com/KISDinteractive/arduino_22w/tree/main/src) folder!**
 
 ### Building Blocks of Coding
 
@@ -43,4 +43,106 @@ void loop() { … } // is executed after setup() forever
 
 ### First Examples
 
-**Serial_Monitor_Hello World**
+**0_serialMonitorHelloWorld**
+
+```arduino
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+ Serial.println("Hello World");
+}
+
+```
+
+**1_blink**
+
+```arduino
+void setup() {
+  pinMode(13, OUTPUT); 
+}
+
+void loop() {
+  digitalWrite(13, HIGH);
+  delay(1000);
+  digitalWrite(13, LOW);
+  delay(1000);
+}
+```
+
+**2_blinkWithVariables**
+
+```arduino
+int delayValue = 1000;
+int ledPin = 13;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(ledPin, HIGH);
+  delay(delayValue);
+  digitalWrite(ledPin, LOW);
+  delay(delayValue);
+}
+```
+
+**3_simpleSOS**
+
+```arduino
+int shortValue = 100;
+int longValue = 500;
+int ledPin = 13;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  //s -----
+  digitalWrite(ledPin, HIGH);
+  delay(shortValue);
+  digitalWrite(ledPin, LOW);
+  delay(shortValue);
+  digitalWrite(ledPin, HIGH);
+  delay(shortValue);
+  digitalWrite(ledPin, LOW);
+  delay(shortValue);
+  digitalWrite(ledPin, HIGH);
+  delay(shortValue);
+  digitalWrite(ledPin, LOW);
+  delay(shortValue);
+
+  //0 -----
+  digitalWrite(ledPin, HIGH);
+  delay(longValue);
+  digitalWrite(ledPin, LOW);
+  delay(longValue);
+  digitalWrite(ledPin, HIGH);
+  delay(longValue);
+  digitalWrite(ledPin, LOW);
+  delay(longValue);
+  digitalWrite(ledPin, HIGH);
+  delay(longValue);
+  digitalWrite(ledPin, LOW);
+  delay(longValue);
+
+  //s -----
+  digitalWrite(ledPin, HIGH);
+  delay(shortValue);
+  digitalWrite(ledPin, LOW);
+  delay(shortValue);
+  digitalWrite(ledPin, HIGH);
+  delay(shortValue);
+  digitalWrite(ledPin, LOW);
+  delay(shortValue);
+  digitalWrite(ledPin, HIGH);
+  delay(shortValue);
+  digitalWrite(ledPin, LOW);
+  delay(shortValue);
+
+  delay(1000);
+}
+```
