@@ -80,7 +80,7 @@ void loop() {
 
 **2_blinkWithVariables**
 
-_We know variables already from the [fundamentals course](https://github.com/KISDinteractive/fundamentals22w). Now we use 2 of them here to abstract the concrete number we use for specifying the `delay()` function, and the pin number we are referring inside the `pinMode()`and the `digitalWrite()` functions. Thus, if we would change the LED pin or wanted our blinking to happen with a different speed, we need only to adjust the two values at the top and don't need to deep dive into the setup() and loop()._
+_We know variables already from the [fundamentals course](https://github.com/KISDinteractive/fundamentals22w). Now we use 2 of them here to abstract the concrete number we use for specifying the `delay()` function, and the pin number we are referring to inside the `pinMode()`and the `digitalWrite()` functions. Thus, if we would change the LED pin or wanted our blinking to happen with a different speed, we need only to adjust the two values at the top and don't need to deep dive into the setup() and loop()._
 
 ```arduino
 int delayValue = 1000;
@@ -100,7 +100,7 @@ void loop() {
 
 **3_simpleSOS**
 
-_Exercise: Use your skills to program a LED driven, visual SOS (3x short, 3x long, 3x short)!_
+_Exercise: Use your skills to program a LED-driven, visual SOS (3x short, 3x long, 3x short)!_
 
 _Possible Solution:_
 
