@@ -1,9 +1,8 @@
-# Interactive Systems [Application] –  Arduino and Prototyping | w22/23
+# Interactive Systems [Application] – Arduino and Prototyping | w22/23
 
-***Disclaimer:*** *This repo documents an Interaction Design course held at [KISD](https://kisd.de) in the winter term 2022/23. In the "sessions" section you can find supporting material to the four sessions for consolidation or rework in case of missed meetings. Please keep in mind that the transcript was not written for (scientific) completeness _and that reading without participation_ in the course is of limited value.
-*
+**_Disclaimer:_** _This repo documents an Interaction Design course held at [KISD](https://kisd.de) in the winter term 2022/23. In the "sessions" section you can find supporting material to the four sessions for consolidation or rework in case of missed meetings. Please keep in mind that the transcript was not written for (scientific) completeness _and that reading without participation_ in the course is of limited value._
 
----
+***
 
 ## Coding Summary of Session 1
 
@@ -13,24 +12,24 @@ _All Arduino Files can be found inside the [src](https://github.com/KISDinteract
 
 After a short intro into Arduino, Physical Computing, Cybernetics, and System Theory (check the presentation slides for more information on these) - we started using the Arduino Uno and recapped some basic building blocks of coding and started to apply them to the Arduino ecosystem:
 
-* Syntax & Basic Flow
-* Variables
-* Conditionals
-* Loops
-* Arrays
-* Functions
-* Classes, Objects, Libraries
+- Syntax & Basic Flow
+- Variables
+- Conditionals
+- Loops
+- Arrays
+- Functions
+- Classes, Objects, Libraries
 
 **Basic Syntax**
 
 ```c++
 // everything after a double slash is a comment, thus not interpreted as code
 
-void setup() { … } // is executed once, when the Arduino gets power 
+void setup() { … } // is executed once, when the Arduino gets power
 
-void loop() { … } // is executed after setup() forever 
+void loop() { … } // is executed after setup() forever
 
-{ … } // form a block: hold together functions 
+{ … } // form a block: hold together functions
 
 ( … ) // parenthesis: hold parameters in order to specify functions
 
@@ -83,8 +82,8 @@ void loop() {
 _We know variables already from the [fundamentals course](https://github.com/KISDinteractive/fundamentals22w). Now we use 2 of them here to abstract the concrete number we use for specifying the `delay()` function, and the pin number we are referring to inside the `pinMode()`and the `digitalWrite()` functions. Thus, if we would change the LED pin or wanted our blinking to happen with a different speed, we need only to adjust the two values at the top and don't need to deep dive into the setup() and loop()._
 
 ```c++
-int delayValue = 1000; // create a global variable of type int, named "delayValue", holding the value 1000 
-int ledPin = 13; // create a global variable of type int, named "ledPin", holding the value 13 
+int delayValue = 1000; // create a global variable of type int, named "delayValue", holding the value 1000
+int ledPin = 13; // create a global variable of type int, named "ledPin", holding the value 13
 
 void setup() {
   pinMode(ledPin, OUTPUT); //using the variable "ledPin" as first parameter of the pinMode() function
@@ -105,7 +104,7 @@ _Exercise: Use your skills to program a LED-driven, visual SOS (3x short, 3x lon
 _Possible Solution:_
 
 ```c++
-int shortValue = 100;
+int shortValue = 200;
 int longValue = 500;
 int ledPin = 13;
 
@@ -160,10 +159,62 @@ void loop() {
 }
 ```
 
-**4_sosWithLoopsAndFunctions**
+**4_SOSwithLoops**
+
+We can use For-Loops to summarize the 3x short, 3x long, 3x short structure and perform 3 repetitions for each. For the For-Loop you have to define 3 parameters:
+1. Declare a counter-variable with a start-value: `int i = 0;`
+2. Set the condition, for which, as long as it's true, the loop keeps being executed. In this case, as long as `i < 3`is true, the For-Loop goes on
+3. Increment the counting variable, for this example, by 1: `i++`
+
+So the standard For-Loop to repeat sth. 3 times is: `for(int i=0; i<3; i++) { ... }` 
+For our code, one intuitive way of condensing it would be:
 
 ```c++
-int shortValue = 200; 
+int shortValue = 100;
+int longValue = 500;
+int ledPin = 13;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  //s -----
+  for ( int i= 0 ; i<3; i++) {
+    digitalWrite(ledPin, HIGH);
+    delay(shortValue);
+    digitalWrite(ledPin, LOW);
+    delay(shortValue);
+  }
+  //0 -----
+  for ( int i= 0 ; i<3; i++) {
+    digitalWrite(ledPin, HIGH);
+    delay(longValue);
+    digitalWrite(ledPin, LOW);
+    delay(longValue);
+  }
+  //s -----
+  for ( int i= 0 ; i<3; i++) {
+    digitalWrite(ledPin, HIGH);
+    delay(shortValue);
+    digitalWrite(ledPin, LOW);
+    delay(shortValue);
+  } 
+  delay(1000);
+}
+```
+
+**5_SOSwithLoopsAndFunctions**
+
+As variables can be seen as the abstraction of concrete values, functions are abstractions of behaviour. Thus, they are defined 'containers' holding sets of instructions. Functions can resolve into - or 'return', a value. In this case, they have a type that has to match the type of the return value. Functions without return values are of the type 'void'.  
+Also, functions can be further specified with parameters inside the parenthesizes of the function definition. If not further specified, the parenthesizes stay empty.
+
+We can use functions to further abstract some repetitions in our SOS-Code. It is not strictly necessary, but we do it nevertheless in order to illustrate the use of functions. There are many options, but for this example, we kept it simple and created 2 void-functions (no return value) with no parameters (empty parenthesizes): -`morseS()` is holding the set of commands for the 'S', while `morseO()` is holding the instructions for the 'O'. 
+
+Now we can tidy up the loop() further. Inside the loop() we now only need to call  `morseS()`, `morseO()`, and again `morseS()` - followed by a short delay for separation - and have still the same functionality, but in a much more streamlined package, than our first SOS code found in **3_simpleSOS**
+
+```c++
+int shortValue = 200;
 int longValue = 500;
 int ledPin = 13;
 
@@ -176,6 +227,80 @@ void loop() {
   morseO();
   morseS();
   delay(1000);
+}
+
+void morseS() {
+  //s -----
+  for (int i = 0; i < 3; i++) {
+    digitalWrite(ledPin, HIGH);
+    delay(shortValue);
+    digitalWrite(ledPin, LOW);
+    delay(shortValue);
+  }
+}
+
+void morseO() {
+  //0 -----
+  for (int i = 0; i < 3; i++) {
+    digitalWrite(ledPin, HIGH);
+    delay(longValue);
+    digitalWrite(ledPin, LOW);
+    delay(longValue);
+  }
+}
+```
+
+**6_basicIfInput** (with Serial-Monitor)
+
+We leave our SOS just for this example, showcasing a simple if-statement. Regarding hardware, there is a sensor connected to pin A0 and a LED connected to pin 13. In the first line of the `loop()`, we read the current state of the sensor connected to A0 with `analogRead(A0)` and save it into a newly created integer variable named 'inputValue'. After that we print 'inputValue' to the Serial Monitor with `Serial.println(inputValue)`, so we can observe the value on the screen.
+
+Afterwards, we use an If-Statement to check, if the expression `(inputValue > 500)`, and with it, the state of the sensor at A0, is true or false. If 'true', the LED at pin 13 should light up, otherwise the LED should be off.
+
+```c++
+void setup() {
+  Serial.begin(9600);
+  pinMode(A0,INPUT); //Sensor connected to A0
+  pinMode(13,OUTPUT);
+}
+
+void loop() {
+  int inputValue = analogRead(A0); // read sensor value and save it into variable 'inputValue'
+  Serial.println(inputValue); // print'inputValue to Serial Monitor 
+
+  if (inputValue > 500) {
+    digitalWrite(13, HIGH);
+  } else {
+    digitalWrite(13, LOW);
+  }
+  delay(10);
+}
+```
+
+**7_triggerSOS**
+
+The final form of our SOS is only sending the SOS through the LED on pin 13, if it is triggered by a sensor connected to pin A0. If the Sensor is not in a state over 500, it just waits for 1/10 second until the `loop()` ends and the sensor is checked again. It makes use of For-Loops, Functions, and the If-Statement from above.
+
+```c++
+int shortValue = 200;
+int longValue = 500;
+int ledPin = 13;
+
+void setup() {
+  pinMode(a0,INPUT);
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  int inputValue = analogRead(A0); 
+
+  if (inputValue > 500) {
+    morseS();
+    morseO();
+    morseS();
+    delay(1000);
+  } else {
+    delay(100);
+  }
 }
 
 void morseO() {
@@ -198,23 +323,4 @@ void morseS() {
 }
 ```
 
-**5_analogInDigitalOut**
-```c++
-void setup() {
-  Serial.begin(9600);
-  pinMode(13,OUTPUT);
-  pinMode(A0,INPUT);
-}
 
-void loop() {
-  int value = analogRead(A0);
-  Serial.println(value);
-
-  if (value > 500) {
-    digitalWrite(13, HIGH);
-  } else {
-    digitalWrite(13, LOW);
-  }
-  delay(10);
-}
-```

@@ -1,4 +1,4 @@
-int shortValue = 100;
+int shortValue = 200;
 int longValue = 500;
 int ledPin = 13;
 
