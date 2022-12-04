@@ -286,7 +286,7 @@ int longValue = 500;
 int ledPin = 13;
 
 void setup() {
-  pinMode(a0,INPUT);
+  pinMode(A0,INPUT);
   pinMode(ledPin, OUTPUT);
 }
 
@@ -322,5 +322,3 @@ void morseS() {
   }
 }
 ```
-
-
