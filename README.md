@@ -336,7 +336,7 @@ After the hardware is prepared, we will look at the code for making the multiple
 
 **8_uglyMultipleLEDs**
 
-```arduino
+```c++
 int delayValue = 100;  
 int ledPin1 = 13;      
 int ledPin2 = 11;
@@ -389,7 +389,7 @@ void loop() {
 
 **9_intermediateMultipleLEDs**
 
-```arduino
+```c++
 int delayValue = 100; 
 int ledPins[] = { 13, 11, 9, 7, 5, 3 };
 
@@ -437,7 +437,7 @@ void loop() {
 
 **10_niceMultipleLEDs**
 
-```arduino
+```c++
 int delayValue = 100;  
 int ledPins[] = { 13, 11, 9, 7, 5, 3 };
 
