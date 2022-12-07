@@ -162,6 +162,7 @@ void loop() {
 **4_SOSwithLoops**
 
 We can use For-Loops to summarize the 3x short, 3x long, 3x short structure and perform 3 repetitions for each. For the For-Loop you have to define 3 parameters:
+
 1. Declare a counter-variable with a start-value: `int i = 0;`
 2. Set the condition, for which, as long as it's true, the loop keeps being executed. In this case, as long as `i < 3`is true, the For-Loop goes on
 3. Increment the counting variable, for this example, by 1: `i++`
@@ -254,7 +255,7 @@ void morseO() {
 
 We leave our SOS just for this example, showcasing a simple if-statement. Regarding hardware, there is a sensor connected to pin A0 and a LED connected to pin 13. In the first line of the `loop()`, we read the current state of the sensor connected to A0 with `analogRead(A0)` and save it into a newly created integer variable named 'inputValue'. After that we print 'inputValue' to the Serial Monitor with `Serial.println(inputValue)`, so we can observe the value on the screen.
 
-Afterwards, we use an If-Statement to check, if the expression `(inputValue > 500)`, and with it, the state of the sensor at A0, is true or false. If 'true', the LED at pin 13 should light up, otherwise the LED should be off.
+Nest, we use an If-Statement to check, if the expression `(inputValue > 500)`, and with it, the state of the sensor at A0, is true or false. If 'true', the LED at pin 13 should light up, otherwise the LED should be off.
 
 ```c++
 void setup() {
@@ -319,6 +320,139 @@ void morseS() {
     delay(shortValue);
     digitalWrite(ledPin, LOW);
     delay(shortValue);
+  }
+}
+```
+
+**Expaning to the Breadboard: Multiple LEDs**
+
+Hardware:
+
+![](image/2022-12-07-13-30-57-image.png)
+
+Using a Breadboard we connect 6 LEDs as shown above. The positive poles of the LEDs (long legs) are connected to Pins 3, 5, 7, 9, 11 and 13.
+
+After the hardware is prepared, we will look at the code for making the multiple LEDs blink one after another. For this, we will explore 3 versions of the code, from "ugly" but functional, over an intermediate solution utilizing arrays, to a more concise version using arrays and loops.
+
+**8_uglyMultipleLEDs**
+
+```arduino
+int delayValue = 100;  
+int ledPin1 = 13;      
+int ledPin2 = 11;
+int ledPin3 = 9;
+int ledPin4 = 7;
+int ledPin5 = 5;
+int ledPin6 = 3;
+
+void setup() {
+  pinMode(ledPin1, OUTPUT);  
+  pinMode(ledPin2, OUTPUT);
+  pinMode(ledPin3, OUTPUT);
+  pinMode(ledPin4, OUTPUT);
+  pinMode(ledPin5, OUTPUT);
+  pinMode(ledPin6, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(ledPin1, HIGH);  
+  delay(delayValue);            
+  digitalWrite(ledPin1, LOW);
+  delay(delayValue);
+
+  digitalWrite(ledPin2, HIGH);  
+  delay(delayValue);            
+  digitalWrite(ledPin2, LOW);
+  delay(delayValue);
+
+  digitalWrite(ledPin3, HIGH);  
+  delay(delayValue);            
+  digitalWrite(ledPin3, LOW);
+  delay(delayValue);
+
+  digitalWrite(ledPin4, HIGH);  
+  delay(delayValue);            
+  digitalWrite(ledPin4, LOW);
+  delay(delayValue);
+
+  digitalWrite(ledPin5, HIGH);  
+  delay(delayValue);            
+  digitalWrite(ledPin5, LOW);
+  delay(delayValue);
+
+  digitalWrite(ledPin6, HIGH);  
+  delay(delayValue);            
+  digitalWrite(ledPin6, LOW);
+  delay(delayValue);
+}
+```
+
+**9_intermediateMultipleLEDs**
+
+```arduino
+int delayValue = 100; 
+int ledPins[] = { 13, 11, 9, 7, 5, 3 };
+
+void setup() {
+  pinMode(ledPins[0], OUTPUT);
+  pinMode(ledPins[1], OUTPUT);
+  pinMode(ledPins[2], OUTPUT);
+  pinMode(ledPins[3], OUTPUT);
+  pinMode(ledPins[4], OUTPUT);
+  pinMode(ledPins[5], OUTPUT);
+}
+
+void loop() {
+  digitalWrite(ledPins[0], HIGH);  // using "ledPin" as input for digitalWrite()
+  delay(delayValue);              // using "delayValue" as input for delay()
+  digitalWrite(ledPins[0], LOW);
+  delay(delayValue);
+
+  digitalWrite(ledPins[1], HIGH);  // using "ledPin" as input for digitalWrite()
+  delay(delayValue);              // using "delayValue" as input for delay()
+  digitalWrite(ledPins[1], LOW);
+  delay(delayValue);
+
+  digitalWrite(ledPins[2], HIGH);  // using "ledPin" as input for digitalWrite()
+  delay(delayValue);              // using "delayValue" as input for delay()
+  digitalWrite(ledPins[2], LOW);
+  delay(delayValue);
+
+  digitalWrite(ledPins[3], HIGH);  // using "ledPin" as input for digitalWrite()
+  delay(delayValue);              // using "delayValue" as input for delay()
+  digitalWrite(ledPins[3], LOW);
+  delay(delayValue);
+
+  digitalWrite(ledPins[4], HIGH);  // using "ledPin" as input for digitalWrite()
+  delay(delayValue);              // using "delayValue" as input for delay()
+  digitalWrite(ledPins[4], LOW);
+  delay(delayValue);
+
+  digitalWrite(ledPins[5], HIGH);  // using "ledPin" as input for digitalWrite()
+  delay(delayValue);              // using "delayValue" as input for delay()
+  digitalWrite(ledPins[5], LOW);
+  delay(delayValue);
+}
+```
+
+**10_niceMultipleLEDs**
+
+```arduino
+int delayValue = 100;  
+int ledPins[] = { 13, 11, 9, 7, 5, 3 };
+
+void setup() {
+  for (int i = 0; i < 6; i++) {
+    pinMode(ledPins[i], OUTPUT);
+  }
+}
+
+void loop() {
+  for (int i = 0; i <= 5; i++) {
+    digitalWrite(ledPins[i], HIGH);  // using "ledPin" as input for digitalWrite()
+    delay(delayValue);               // using "delayValue" as input for delay()
+    digitalWrite(ledPins[i], LOW);
+    delay(delayValue);
   }
 }
 ```
