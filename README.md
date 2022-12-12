@@ -2,7 +2,7 @@
 
 **_Disclaimer:_** _This repo documents an Interaction Design course held at [KISD](https://kisd.de) in the winter term 2022/23. In the "sessions" section you can find supporting material to the four sessions for consolidation or rework in case of missed meetings. Please keep in mind that the transcript was not written for (scientific) completeness _and that reading without participation_ in the course is of limited value._
 
-***
+---
 
 ## Coding Summary of Session 1
 
@@ -167,7 +167,7 @@ We can use For-Loops to summarize the 3x short, 3x long, 3x short structure and 
 2. Set the condition, for which, as long as it's true, the loop keeps being executed. In this case, as long as `i < 3`is true, the For-Loop goes on
 3. Increment the counting variable, for this example, by 1: `i++`
 
-So the standard For-Loop to repeat sth. 3 times is: `for(int i=0; i<3; i++) { ... }` 
+So the standard For-Loop to repeat sth. 3 times is: `for(int i=0; i<3; i++) { ... }`
 For our code, one intuitive way of condensing it would be:
 
 ```c++
@@ -207,10 +207,10 @@ void loop() {
 
 **5_SOSwithLoopsAndFunctions**
 
-As variables can be seen as the abstraction of concrete values, functions are abstractions of behaviour. Thus, they are defined 'containers' holding sets of instructions. Functions can resolve into - or 'return', a value. In this case, they have a type that has to match the type of the return value. Functions without return values are of the type 'void'.  
+As variables can be seen as the abstraction of concrete values, functions are abstractions of behaviour. Thus, they are defined 'containers' holding sets of instructions. Functions can resolve into - or 'return', a value. In this case, they have a type that has to match the type of the return value. Functions without return values are of the type 'void'.
 Also, functions can be further specified with parameters inside the parenthesizes of the function definition. If not further specified, the parenthesizes stay empty.
 
-We can use functions to further abstract some repetitions in our SOS-Code. It is not strictly necessary, but we do it nevertheless in order to illustrate the use of functions. There are many options, but for this example, we kept it simple and created 2 void-functions (no return value) with no parameters (empty parenthesizes): -`morseS()` is holding the set of commands for the 'S', while `morseO()` is holding the instructions for the 'O'. 
+We can use functions to further abstract some repetitions in our SOS-Code. It is not strictly necessary, but we do it nevertheless in order to illustrate the use of functions. There are many options, but for this example, we kept it simple and created 2 void-functions (no return value) with no parameters (empty parenthesizes): -`morseS()` is holding the set of commands for the 'S', while `morseO()` is holding the instructions for the 'O'.
 
 Now we can tidy up the loop() further. Inside the loop() we now only need to call  `morseS()`, `morseO()`, and again `morseS()` - followed by a short delay for separation - and have still the same functionality, but in a much more streamlined package, than our first SOS code found in **3_simpleSOS**
 
@@ -338,7 +338,7 @@ After the hardware is prepared, we will look at the code for making the multiple
 
 ```c++
 int delayValue = 100;  
-int ledPin1 = 13;      
+int ledPin1 = 13;  
 int ledPin2 = 11;
 int ledPin3 = 9;
 int ledPin4 = 7;
@@ -356,32 +356,32 @@ void setup() {
 
 void loop() {
   digitalWrite(ledPin1, HIGH);  
-  delay(delayValue);            
+  delay(delayValue);        
   digitalWrite(ledPin1, LOW);
   delay(delayValue);
 
   digitalWrite(ledPin2, HIGH);  
-  delay(delayValue);            
+  delay(delayValue);        
   digitalWrite(ledPin2, LOW);
   delay(delayValue);
 
   digitalWrite(ledPin3, HIGH);  
-  delay(delayValue);            
+  delay(delayValue);        
   digitalWrite(ledPin3, LOW);
   delay(delayValue);
 
   digitalWrite(ledPin4, HIGH);  
-  delay(delayValue);            
+  delay(delayValue);        
   digitalWrite(ledPin4, LOW);
   delay(delayValue);
 
   digitalWrite(ledPin5, HIGH);  
-  delay(delayValue);            
+  delay(delayValue);        
   digitalWrite(ledPin5, LOW);
   delay(delayValue);
 
   digitalWrite(ledPin6, HIGH);  
-  delay(delayValue);            
+  delay(delayValue);        
   digitalWrite(ledPin6, LOW);
   delay(delayValue);
 }
@@ -403,33 +403,33 @@ void setup() {
 }
 
 void loop() {
-  digitalWrite(ledPins[0], HIGH);  // using "ledPin" as input for digitalWrite()
-  delay(delayValue);              // using "delayValue" as input for delay()
+  digitalWrite(ledPins[0], HIGH);  
+  delay(delayValue);   
   digitalWrite(ledPins[0], LOW);
   delay(delayValue);
 
-  digitalWrite(ledPins[1], HIGH);  // using "ledPin" as input for digitalWrite()
-  delay(delayValue);              // using "delayValue" as input for delay()
+  digitalWrite(ledPins[1], HIGH);  
+  delay(delayValue);  
   digitalWrite(ledPins[1], LOW);
   delay(delayValue);
 
-  digitalWrite(ledPins[2], HIGH);  // using "ledPin" as input for digitalWrite()
-  delay(delayValue);              // using "delayValue" as input for delay()
+  digitalWrite(ledPins[2], HIGH);  
+  delay(delayValue);  
   digitalWrite(ledPins[2], LOW);
   delay(delayValue);
 
-  digitalWrite(ledPins[3], HIGH);  // using "ledPin" as input for digitalWrite()
-  delay(delayValue);              // using "delayValue" as input for delay()
+  digitalWrite(ledPins[3], HIGH);  
+  delay(delayValue);    
   digitalWrite(ledPins[3], LOW);
   delay(delayValue);
 
-  digitalWrite(ledPins[4], HIGH);  // using "ledPin" as input for digitalWrite()
-  delay(delayValue);              // using "delayValue" as input for delay()
+  digitalWrite(ledPins[4], HIGH); 
+  delay(delayValue);        
   digitalWrite(ledPins[4], LOW);
   delay(delayValue);
 
-  digitalWrite(ledPins[5], HIGH);  // using "ledPin" as input for digitalWrite()
-  delay(delayValue);              // using "delayValue" as input for delay()
+  digitalWrite(ledPins[5], HIGH);  
+  delay(delayValue);          
   digitalWrite(ledPins[5], LOW);
   delay(delayValue);
 }
@@ -454,5 +454,48 @@ void loop() {
     digitalWrite(ledPins[i], LOW);
     delay(delayValue);
   }
+}
+```
+
+**11_Servo**
+
+```c++
+#include <Servo.h>
+
+Servo myservo;  // create servo object to control a servo
+
+int potpin = A0;  // analog pin used to connect the potentiometer
+int val;    // variable to read the value from the analog pin
+
+void setup() {
+  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
+}
+
+void loop() {
+  val = analogRead(potpin);            // reads the value of the potentiometer (value between 0 and 1023)
+  val = map(val, 0, 1023, 0, 180);     // scale it for use with the servo (value between 0 and 180)
+  myservo.write(val);                  // sets the servo position according to the scaled value
+  delay(15);                           // waits for the servo to get there
+}
+```
+
+
+**12_touchInput**
+
+```c++
+#include <ADCTouch.h>
+
+int touchOffset;  //reference values to remove offset
+
+void setup() {
+  Serial.begin(9600);
+  touchOffset = ADCTouch.read(A0, 500);  //create reference values to
+}
+
+void loop() {
+  int touchValue = ADCTouch.read(A0);     //read touch value
+  touchValue = touchValue - touchOffset;  //remove offset
+  Serial.println(touchValue);             //print to serial
+  delay(100);
 }
 ```
