@@ -499,3 +499,27 @@ void loop() {
   delay(100);
 }
 ```
+
+```c++
+#include <Adafruit_NeoPixel.h>
+
+#define PIN 6         // Which pin on the Arduino is connected to the NeoPixels?
+#define NUMPIXELS 16  // How many NeoPixels are attached to the Arduino?
+
+Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);  //create Neopixel Object
+
+int delayVal = 10;
+
+void setup() {
+  pixels.begin();  // INITIALIZE NeoPixel strip object (REQUIRED)
+  pixels.clear();  // Set all pixel colors to 'off'
+}
+
+void loop() {
+  for (int i = 0; i < NUMPIXELS; i++) {                // For each pixel...
+    pixels.setPixelColor(i, pixels.Color(0, 150, 0));  // pixels.Color() takes RGB values, from 0,0,0 up to 255,255,255
+    pixels.show();                                     // Send the updated pixel colors to the hardware.
+    delay(delayVal);                                   // Pause before next pass through loop
+  }
+}
+```
