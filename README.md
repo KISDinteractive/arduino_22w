@@ -654,5 +654,34 @@ void theaterChaseRainbow(int wait) {
   }
 }
 
+```
 
+```java
+import processing.serial.*;    // import serial library
+
+Serial myPort;        // create serial object
+float serialValue = 0;     // declaration of variable which will be controlled by the arduino
+
+void setup () {
+  size(400, 300);  // >> width , height
+  myPort = new Serial(this, Serial.list()[0], 9600); // type here the arduino port, check it in arduino>tools>port
+  myPort.bufferUntil('\n');
+}
+
+void draw () {      // here you can go crazy
+  background(0);
+  float value = map (serialValue, 0,30,0,200);
+  rect( 0, 0, value, value);
+}
+
+
+// magic function to read arduino through serial connection: writes value from arduino to *inByte* variable
+void serialEvent (Serial myPort) {
+  String inString = myPort.readStringUntil('\n');
+  if (inString != null) {
+    inString = trim(inString);
+    serialValue = float(inString);
+    println(serialValue);
+  }
+}
 ```
